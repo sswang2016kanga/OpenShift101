@@ -10,7 +10,7 @@ This repository contains the hands-on workshops to get started and familiar with
 
 ## Introduction to Minishift
 
-The workshops below run through a series of scenarios for creating, deploying and managing micro-services within an OpenShift single-node cluster using Minishift. Before running any of the labs, make sure you have correctly installed Minishift along with any other [prerequisites].
+The workshops below run through a series of scenarios for creating, deploying and managing micro-services within an OpenShift three-node cluster on IBM Cloud. Before running any of the labs, make sure you have correctly granted your OpenShift cluster.
 
 - [Setup]
 - [Lab 1]: Creating OpenShift projects
