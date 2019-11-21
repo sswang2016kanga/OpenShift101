@@ -1,12 +1,10 @@
-[日本語はこちら - Japanese version](./README-ja.md)
-
 <img src="https://avatars1.githubusercontent.com/u/38341030?s=150&v=4">
 
 # What is OpenShift?
 
 Red Hat® OpenShift® is supported Kubernetes for cloud-native applications with enterprise security. Although Kubernetes has great scalability, workload portability and intuitive abstractions which allows you to seperate business and developer concerns, it is still quite a concern to install, deploy and keep clusters operational.
 
-This repository contains the hands-on workshops to get started and familiar with OpenShift concepts using the Minishift flavour which allows you to create a local OpenShift cluster. 
+This repository contains the hands-on workshops to get started and familiar with OpenShift on IBM Cloud.
 
 [![OpenShift Overview](https://www.openshift.com/hubfs/video_Red-Hat-OpenShift-overview.jpg)](https://www.youtube.com/watch?v=5dwMrFxq8sU)
 
