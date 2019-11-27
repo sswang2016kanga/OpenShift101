@@ -2,53 +2,48 @@
 
 Once it has been verified that the application is up and running as instructed in the [previous lab (Lab 3)](../Lab3/README.md), the next step is to configure access for the application outside of the cluster. There are several ways to do this:
 
-- Node-port services
-- Port-forwarding
-- Routes
+## Option 1: Port-forwarding
 
-## 4.1 Node port services
-
-This is the cleanest way to access the applications outside of OpenShift environment both locally and publicly. This way essentially makes use of the cluster node's IPs and a port in between the range (30000-32767) and tells OpenShift to proxy to the underlying application via. the port. This is better than the next two solutions for several reasons: we don't have to worry about port clashes, this works for non HTTP based services and finally, does not require a public host name. 
-
-To expose our deployment via NodePort, we simply expose the deployment with a _load balancer_ type and label it with name _nodejs-ex-ingress_:
-```console
-$ oc expose dc nodejs-ex --type=LoadBalancer --name=nodejs-ex-ingress
-service/nodejs-ex-ingress exposed
-```
-
-To see the NodePort created, we can run:
-```console
-$ oc get --export svc nodejs-ex-ingress
-NAME                TYPE           CLUSTER-IP   EXTERNAL-IP    PORT(S)          AGE
-nodejs-ex-ingress   LoadBalancer   <none>       172.29.51.89   8080:31692/TCP   <unknown>
-```
-
-We can use the NodePort in conjuction with the cluster's internal or external IP which we can find in the following command:
-```console
-$ oc get node -o wide
-NAME        STATUS    ROLES     AGE       VERSION           INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                KERNEL-VERSION              CONTAINER-RUNTIME
-localhost   Ready     <none>    13h       v1.11.0+d4cacc0   192.168.64.11   <none>        CentOS Linux 7 (Core)   3.10.0-957.5.1.el7.x86_64   docker://1.13.1
-```
-
-We should then be able to access the application in the browser. In this example, we can access the Node application at `192.168.64.11:31692`:
-
-![OpenShift node app](../images/openshift_node_app.png)
-
-## 4.2 Port-forwarding
-
-Alternatively, if you want to quickly access a port of a specific pod of your cluster, you can also use the oc `port-forward` command:
+If you want to quickly access a port of a specific pod of your cluster, you can also use the oc `port-forward` command:
 
 ```
 $ oc port-forward POD [LOCAL_PORT:]REMOTE_PORT
 ```
 
-## 4.3 Routes
+## Option 2: Node Port services
+
+This is the cleanest way to access the applications outside of OpenShift environment both locally and publicly. This way essentially makes use of the cluster node's IPs and a port in between the range (30000-32767) and tells OpenShift to proxy to the underlying application via. the port. This is better than the other two solutions for several reasons: we don't have to worry about port clashes, this works for non HTTP based services and finally, does not require a public host name.
+
+To expose our deployment via NodePort, we simply expose the deployment with a *NodePort* type and label it with name *nodejs-ex-nodeport*
+
+```console
+$ oc expose dc nodejs-ex --type=LoadBalancer --name=nodejs-ex-nodeport
+service/nodejs-ex-ingress exposed
+```
+
+To see the NodePort created, we can run:
+
+```console
+$ oc get svc nodejs-ex-nodeport
+```
+
+We should then be able to access the application in the browser, there is no installed browser on this server. In order to access to application, we use the following command
+
+```console
+$ curl [External-IP]:[PORT]
+```
+
+## Option 3: Routes
 
 For web applications, the most common way to expose it is by a route. A route exposes the service as a host name. You can do this by running the command providing you have a host name available:
 
 ```
-$ oc expose svc/nodejs-ex --hostname=www.example.com
+$ oc expose svc/nodejs-ex
+$ oc get routes
 ```
+
+We should then be able to access the application in any browser !
+
 
 Congratulations! You have completed all labs in this workshop! You have learnt how to:
 - Create an OpenShift project
@@ -56,4 +51,4 @@ Congratulations! You have completed all labs in this workshop! You have learnt h
 - How to monitor the status of an application
 - How to access and expose your application
 
-For more information on how to navigate Minishift, check the [Minishift docs](https://docs.okd.io/latest/minishift/index.html)
+For more information on how to navigate OpenShift, check the [OpenShift docs](https://docs.openshift.com/dedicated/3/welcome/index.html)

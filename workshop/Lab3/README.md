@@ -4,7 +4,7 @@ After creating an OpenShift application as instructed in the [previous lab (Lab 
 
 ## 1. Monitoring builds
 
-When we run `oc new-app` a build is triggered similar to a `docker build`. Unlike `docker build` however, the build happens in the background and we don't get the output of what is happening. 
+When we run `oc new-app` a build is triggered similar to a `docker build`. Unlike `docker build` however, the build happens in the background and we don't get the output of what is happening.
 
 To see this output, we can run:
 
@@ -12,7 +12,7 @@ To see this output, we can run:
 $ oc status
 ```
 
-Assuming we were building the ruby template we would run:
+Assuming we were building the nodejs template we would run:
 
 ```
 $ oc new-app https://github.com/sclorg/nodejs-ex
@@ -78,3 +78,6 @@ nodejs-ex   ClusterIP   172.30.6.48   <none>        8080/TCP   14m
 As with Kubernetes, each application can be given an internal IP in which we can access our services but unless stated otherwise, this will only be available within the cluster.
 
 Congratulations! You have learnt how to monitor your application builds and deployments within your cluster! To see how we can expose our applications outside of the OpenShift cluster, let's continue on to the [final Lab (Lab 4)](../Lab4/README.md)
+
+## References
+[Basic CLI Operations](https://docs.openshift.com/container-platform/3.11/cli_reference/basic_cli_operations.html)
