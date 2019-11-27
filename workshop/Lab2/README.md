@@ -17,11 +17,6 @@ $ oc new-app https://github.com/sclorg/nodejs-ex
 
 <img src="../images/buildconfig.png" >
 
-Clean Up Environment
-```
-$ oc delete all --all
-```
-
 You can override the image the builder uses for a particular source repository by specifying the image and the repository, with a ~ as a separator.
 ```
 $ oc new-app myproject/my-image~path/to/local/or/remote/repository.git

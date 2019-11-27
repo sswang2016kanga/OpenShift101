@@ -10,6 +10,8 @@ You should have a default project setup already but we will create a new project
 
 ![create-project-ui](../images/copy-login-command.png)
 
+Copy Login Command and paste it to the terminal.
+
 ```
 $ oc login <your-cluster-url> --token=<your-token>
 ```

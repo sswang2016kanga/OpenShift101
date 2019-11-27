@@ -17,7 +17,7 @@ This is the cleanest way to access the applications outside of OpenShift environ
 To expose our deployment via NodePort, we simply expose the deployment with a *NodePort* type and label it with name *nodejs-ex-nodeport*
 
 ```console
-$ oc expose dc nodejs-ex --type=LoadBalancer --name=nodejs-ex-nodeport
+$ oc expose dc nodejs-ex --type=NodePort --name=nodejs-ex-nodeport
 service/nodejs-ex-ingress exposed
 ```
 
